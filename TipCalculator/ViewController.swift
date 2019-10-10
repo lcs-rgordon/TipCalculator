@@ -19,11 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalTipInDollars: UILabel!
     
     @IBOutlet weak var tipPerPersonInDollars: UILabel!
-    
-    // Default tip value as percentage
-    var tipPercentageAsDouble = 0.15
-    
-    
+        
     // MARK: Methods
     // (functions, actions)
     override func viewDidLoad() {
@@ -32,11 +28,14 @@ class ViewController: UIViewController {
     }
     
     // Calculate the tip and report results
-    func calculateTip() {
+    @IBAction func calculateTip(_ sender: UIButton) {
         
         // Get the user input
         let billAmountAsString = billAmount.text!
         let peopleCountAsString = peopleCount.text!
+        
+        // Get the percentage
+        let tipPercentageAsDouble = Double(sender.tag) / 100
         
         // Convert all values to Double data type
         let billAmountAsDouble = Double(billAmountAsString)!
@@ -57,30 +56,7 @@ class ViewController: UIViewController {
         // Send the results to the view
         totalTipInDollars.text = "$\(totalTipRounded)"
         tipPerPersonInDollars.text = "$\(tipPerPersonInDollarsRounded)"
-
     }
     
-    
-    @IBAction func fivePercent(_ sender: Any) {
-        tipPercentageAsDouble = 0.05
-        calculateTip()
-    }
-    
-    @IBAction func tenPercent(_ sender: Any) {
-        tipPercentageAsDouble = 0.10
-        calculateTip()
-    }
-    
-    @IBAction func fifteenPercent(_ sender: Any) {
-        tipPercentageAsDouble = 0.15
-        calculateTip()
-    }
-    
-    @IBAction func twentyPercent(_ sender: Any) {
-        tipPercentageAsDouble = 0.20
-        calculateTip()
-    }
-    
-
 }
 
