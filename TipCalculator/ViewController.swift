@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tipPerPersonInDollars: UILabel!
     
+    
     // MARK: Methods
     // (functions, actions)
     override func viewDidLoad() {
@@ -32,7 +33,26 @@ class ViewController: UIViewController {
     // Calculate the tip and report results
     @IBAction func calculateTip(_ sender: Any) {
         
+        // Get the user input
+        let billAmountAsString = billAmount.text!
+        let tipPercentageAsString = tipPercentage.text!
+        let peopleCountAsString = peopleCount.text!
         
+        // Convert all values to Double data type
+        let billAmountAsDouble = Double(billAmountAsString)!
+        let tipPercentageAsDouble = Double(tipPercentageAsString)! / 100
+        let peopleCountAsDouble = Double(peopleCountAsString)!
+        
+        // Calculate total tip in dollars
+        let totalTip = billAmountAsDouble * tipPercentageAsDouble
+        
+        // Calculate tip per person in dollars
+        let tipPerPerson = totalTip / peopleCountAsDouble
+        
+        // Send the results to the view
+        totalTipInDollars.text = String(totalTip)
+        tipPerPersonInDollars.text = String(tipPerPerson)
+
     }
     
 
