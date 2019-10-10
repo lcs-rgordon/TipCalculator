@@ -14,13 +14,14 @@ class ViewController: UIViewController {
     // (outlets, variables, constants to be used anywhere below)
     @IBOutlet weak var billAmount: UITextField!
     
-    @IBOutlet weak var tipPercentage: UITextField!
-    
     @IBOutlet weak var peopleCount: UITextField!
     
     @IBOutlet weak var totalTipInDollars: UILabel!
     
     @IBOutlet weak var tipPerPersonInDollars: UILabel!
+    
+    // Default tip value as percentage
+    var tipPercentageAsDouble = 0.15
     
     
     // MARK: Methods
@@ -31,16 +32,14 @@ class ViewController: UIViewController {
     }
     
     // Calculate the tip and report results
-    @IBAction func calculateTip(_ sender: Any) {
+    func calculateTip() {
         
         // Get the user input
         let billAmountAsString = billAmount.text!
-        let tipPercentageAsString = tipPercentage.text!
         let peopleCountAsString = peopleCount.text!
         
         // Convert all values to Double data type
         let billAmountAsDouble = Double(billAmountAsString)!
-        let tipPercentageAsDouble = Double(tipPercentageAsString)! / 100
         let peopleCountAsDouble = Double(peopleCountAsString)!
         
         // Calculate total tip in dollars
@@ -61,7 +60,27 @@ class ViewController: UIViewController {
 
     }
     
-
+    
+    @IBAction func fivePercent(_ sender: Any) {
+        tipPercentageAsDouble = 0.05
+        calculateTip()
+    }
+    
+    @IBAction func tenPercent(_ sender: Any) {
+        tipPercentageAsDouble = 0.10
+        calculateTip()
+    }
+    
+    @IBAction func fifteenPercent(_ sender: Any) {
+        tipPercentageAsDouble = 0.15
+        calculateTip()
+    }
+    
+    @IBAction func twentyPercent(_ sender: Any) {
+        tipPercentageAsDouble = 0.20
+        calculateTip()
+    }
+    
 
 }
 
